@@ -1,0 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playwrite+RO:wght@100..400&display=swap");
+
+@import "tailwindcss";
+
+@layer base {
+  * {
+    font-family: "Inter", sans-serif;
+  }
+  
+  .font-nunito {
+    font-family: "Nunito", sans-serif;
+  }
+}
+
+@layer components {
+  .fill-js {
+    fill: #f7df1e;
+  }
+  .fill-react {
+    fill: #61dafb;
+  }
+  .fill-ruby {
+    fill: #cc342d;
+  }
+  .fill-swift {
+    fill: #f05138;
+  }
+  .fill-typescript {
+    fill: #3178c6;
+  }
+  .fill-python-blue {
+    fill: #366994;
+  }
+  .fill-python-yellow {
+    fill: #ffc836;
+  }
+  .fill-nodejs {
+    fill: #339933;
+  }
+  .fill-php {
+    fill: #777bb4;
+  }
+  .fill-go {
+    fill: #00add8;
+  }
+  .fill-csharp {
+    fill: #239120;
+  }
+  .fill-java {
+    fill: #ea2d2e;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  @keyframes progressFill {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fadeInLeft {
+    animation: fadeInLeft 0.6s ease-out forwards;
+  }
+
+  .social-fb {
+    color: #1877f2 !important;
+  }
+  .social-ig {
+    color: #e4405f !important;
+  }
+  .social-tw {
+    color: #000000 !important;
+  }
+  .social-yt {
+    color: #ff0000 !important;
+  }
+
+  .group:hover .social-hover-fb {
+    color: #1877f2 !important;
+  }
+  .group:hover .social-hover-ig {
+    color: #e4405f !important;
+  }
+  .group:hover .social-hover-tw {
+    color: #000000 !important;
+  }
+  .group:hover .social-hover-yt {
+    color: #ff0000 !important;
+  }
+
+  .social-shadow-fb:hover {
+    box-shadow: 0 10px 15px -3px rgba(24, 119, 242, 0.2) !important;
+  }
+  .social-shadow-ig:hover {
+    box-shadow: 0 10px 15px -3px rgba(228, 64, 95, 0.2) !important;
+  }
+  .social-shadow-tw:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+  }
+  .social-shadow-yt:hover {
+    box-shadow: 0 10px 15px -3px rgba(255, 0, 0, 0.2) !important;
+  }
+
+  .testimonial-swiper .swiper-pagination {
+    bottom: 0 !important;
+  }
+
+  .testimonial-swiper .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: #d1d5db;
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
+
+  .testimonial-swiper .swiper-pagination-bullet-active {
+    background: #2563eb;
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  .testimonial-swiper-left,
+  .testimonial-swiper-right {
+    width: 100%;
+    height: 600px;
+  }
+
+  .testimonial-swiper-left .swiper-wrapper,
+  .testimonial-swiper-right .swiper-wrapper {
+    transition-timing-function: linear;
+  }
+
+  @media (max-width: 768px) {
+    .testimonial-swiper-left,
+    .testimonial-swiper-right {
+      height: auto;
+    }
+  }
+
+  /* ================================
+     Yoyo Testimonial Scroll Animations (FIX DIRECTION)
+     - Right: top -> bottom
+     - Left : bottom -> top
+     (Durasi sama, beda posisi start & arah)
+  =================================== */
+
+  :root {
+    --testimonial-visible-height: 630px;
+    --testimonial-scroll-distance: calc(-100% + var(--testimonial-visible-height));
+  }
+
+  @keyframes leftBottomToTop {
+    0% {
+      transform: translateY(var(--testimonial-scroll-distance));
+    }
+    50% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(var(--testimonial-scroll-distance));
+    }
+  }
+
+  @keyframes rightTopToBottom {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(var(--testimonial-scroll-distance));
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .testimonial-scroll-up {
+    animation: leftBottomToTop 20s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .testimonial-scroll-down {
+    animation: rightTopToBottom 20s ease-in-out infinite;
+    will-change: transform;
+    animation-delay: 0s;
+  }
+
+  .testimonial-scroll-container:hover .testimonial-scroll-up,
+  .testimonial-scroll-container:hover .testimonial-scroll-down {
+    animation-play-state: paused;
+  }
+}

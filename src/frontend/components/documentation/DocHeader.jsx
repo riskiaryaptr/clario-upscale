@@ -32,7 +32,7 @@ const DocHeader = ({ isDarkMode, toggleDarkMode, isMobileMenuOpen, setIsMobileMe
                         <>
                             <div className="flex items-center gap-2">
                                 <div className="flex-shrink-0">
-                                    <a href="/" className="flex flex-col justify-center line-none">
+                                    <a href="/index" className="flex flex-col justify-center line-none">
                                         <span className={`font-bold text-base sm:text-lg leading-none tracking-tight ${isDarkMode ? 'text-gray-100' : 'text-gray-700'}`}>
                                             Clario AI
                                         </span>

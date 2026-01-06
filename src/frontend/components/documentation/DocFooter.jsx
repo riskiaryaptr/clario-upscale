@@ -2,7 +2,7 @@ import React from 'react';
 
 const DocFooter = ({ isDarkMode }) => {
     return (
-        <footer className={`border-t py-10 transition-colors duration-200 ${isDarkMode ? 'border-gray-800 text-gray-400' : 'border-gray-200 text-gray-500'}`}>
+        <footer className={`border-t py-5 transition-colors duration-200 ${isDarkMode ? 'border-gray-800 text-gray-400' : 'border-gray-200 text-gray-500'}`}>
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[12px] font-normal leading-relaxed font-nunito">
                     <div className="flex flex-wrap justify-center md:justify-start items-center gap-2">

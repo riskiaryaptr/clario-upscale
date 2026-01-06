@@ -174,9 +174,9 @@ function Header() {
                         <div className="px-6 mt-6 flow-root">
                             <div className="-my-6">
                                 <div className="space-y-4 py-6 font-medium text-gray-700 text-sm/6">
-                                    <Link to="/" className="-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300">Image Upscaler</Link>                                    
+                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/') || isActive('/index') ? 'text-blue-600' : ''}`}>Image Upscaler</Link>                                    
                                     <div className="border-b border-dotted border-gray-300">
-                                        <button onClick={() => { setMobileDevelopersOpen(!mobileDevelopersOpen); setMobileAiToolsOpen(false);}} className="-mx-3 w-full flex items-center justify-between px-3 py-2.5 text-left">
+                                        <button onClick={() => { setMobileDevelopersOpen(!mobileDevelopersOpen); setMobileAiToolsOpen(false);}} className={`-mx-3 w-full flex items-center justify-between px-3 py-2.5 text-left ${isActive('/Documentation') ? 'text-blue-600' : ''}`}>
                                             <span>Developers</span>
                                             <svg className={`w-4 h-4 transition-transform duration-200 ${mobileDevelopersOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -185,7 +185,7 @@ function Header() {
 
                                         {mobileDevelopersOpen && (
                                             <div className="pb-3 pl-6 space-y-2 animate-fadeIn">
-                                                <Link to="/Documentation" className="block py-4 text-sm text-gray-600 hover:text-blue-600">
+                                                <Link to="/Documentation" className={`block py-4 text-sm hover:text-blue-600 ${isActive('/Documentation') ? 'text-blue-600' : 'text-gray-600'}`}>
                                                     <div className="flex gap-5 items-start">
                                                         <svg className="w-4 h-4 text-gray-700 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -223,10 +223,10 @@ function Header() {
                                             </div>
                                         )}
                                     </div>
-                                    <Link to="/Reimagine" className="-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300">Reimagine Upscaler</Link>
-                                    <Link to="/" className="-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300">Crop Image</Link>
-                                    <Link to="/Pricing" className="-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300">Pricing</Link>
-                                    <Link to="/" className="-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300">Blog</Link>
+                                    <Link to="/Reimagine" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/Reimagine') ? 'text-blue-600' : ''}`}>Reimagine Upscaler</Link>
+                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/crop') ? 'text-blue-600' : ''}`}>Crop Image</Link>
+                                    <Link to="/Pricing" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/Pricing') ? 'text-blue-600' : ''}`}>Pricing</Link>
+                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/blog') ? 'text-blue-600' : ''}`}>Blog</Link>
                                 </div>
 
                                 <div className="py-2 space-y-1">

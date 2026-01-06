@@ -3,10 +3,12 @@ import Header from "@/frontend/components/Header";
 import Footer from "@/frontend/components/Footer";
 import personUpscale from "@/assets/images/images-2.jpg";
 
-function Index() {
+function ReimagineUpscaler() {
     const [uploadedImages, setUploadedImages] = useState([]);
     const [selectedRatio, setSelectedRatio] = useState("200%");
     const [isUploading, setIsUploading] = useState(false);
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [processedImages, setProcessedImages] = useState([]);
     const [sliderPosition, setSliderPosition] = useState(50);
     const [isDragging, setIsDragging] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
@@ -127,9 +129,21 @@ function Index() {
         setUploadedImages([]);
     };
 
-    const handleUploadStart = () => {
-        console.log('Starting upload with ratio:', selectedRatio);
-        console.log('Images:', uploadedImages);
+    const handleUploadStart = async () => {
+        if (uploadedImages.length === 0) return;
+        
+        setIsProcessing(true);
+        
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        
+        const results = uploadedImages.map(img => ({
+            ...img,
+            processedPreview: img.preview,
+            status: 'completed'
+        }));
+        
+        setProcessedImages(results);
+        setIsProcessing(false);
     };
 
     return (
@@ -176,39 +190,120 @@ function Index() {
                         </div>
 
                         <div className="border-2 border-dashed border-gray-300 rounded-2xl bg-gray-50 relative p-5 pb-16 min-h-[180px]" onDrop={handleDrop} onDragOver={handleDragOver}>
+                            {processedImages.length > 0 ? (
+                                <div className="space-y-6">
+                                    <div className="flex items-center justify-between">
+                                        <h3 className="text-lg font-semibold text-gray-800 tracking-tight">AI Reimagined Results</h3>
+                                        <button onClick={() => { setProcessedImages([]); setUploadedImages([]); }} className="text-sm font-medium text-blue-600 hover:text-blue-700">
+                                            New Reimagine
+                                        </button>
+                                    </div>
+                                    <div className="grid grid-cols-1 gap-4">
+                                        {processedImages.map((image) => (
+                                            <div key={image.id} className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row items-center gap-6">
+                                                <div className="relative group w-full sm:w-48 aspect-square flex-shrink-0">
+                                                    <img src={image.preview} alt="Original" className="w-full h-full object-cover rounded-lg shadow-sm" />
+                                                    <div className="absolute top-2 left-2 px-2 py-0.5 bg-black/50 backdrop-blur-sm text-white text-[10px] rounded uppercase font-bold tracking-wider">Original</div>
+                                                </div>
+                                                
+                                                <div className="flex flex-col items-center justify-center gap-2">
+                                                    <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center">
+                                                        <svg className="w-6 h-6 text-indigo-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.675.337a4 4 0 01-2.574.345l-3.113-.623a2 2 0 11.4-.78l3.112.623a6 6 0 003.86-.517l.674-.337a4 4 0 012.574-.345l2.387.477a4 4 0 012.044 1.093m-9.988 9.988a2 2 0 11-1.414-1.414m1.414 1.414a2 2 0 01-1.414-1.414m1.414 1.414a2.25 2.25 0 001.591-.659l1.414-1.414a2.25 2.25 0 013.182 0l1.414 1.414a2.25 2.25 0 001.591.659M7.75 5a.75.75 0 01.75.75v3.5l3.5 3.5a.75.75 0 01-1.06 1.06l-3.5-3.5h-3.5a.75.75 0 010-1.5h3.5v-3.5A.75.75 0 017.75 5z" />
+                                                        </svg>
+                                                    </div>
+                                                    <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest leading-none">Reimagine</span>
+                                                </div>
 
-                            <div className="flex h-full min-h-[inherit] flex-col items-center justify-center text-center">
-                                <input type="file" id="file-upload" className="hidden" accept="image/jpeg,image/png,image/webp" multiple onChange={handleFileChange}/>
-                                
-                                <label htmlFor="file-upload" className="mb-5 rounded-lg bg-blue-600 px-8 py-3.5 text-base font-semibold text-white shadow-sm flex items-center gap-2 cursor-pointer hover:bg-blue-700 transition-colors">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                    <span>Choose Images</span>
-                                </label>
+                                                <div className="relative group w-full sm:w-48 aspect-square flex-shrink-0">
+                                                    <img src={image.processedPreview} alt="Reimagined" className="w-full h-full object-cover rounded-lg shadow-md border-2 border-indigo-500/20" />
+                                                    <div className="absolute top-2 left-2 px-2 py-0.5 bg-indigo-600 text-white text-[10px] rounded uppercase font-bold tracking-wider">AI Reimagined</div>
+                                                    <a href={image.processedPreview} download={`reimagined-${image.name}`} className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg">
+                                                        <button className="bg-white text-gray-900 px-4 py-2 rounded-lg font-semibold text-sm flex items-center gap-2 shadow-xl transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                                            </svg>
+                                                            Save HD
+                                                        </button>
+                                                    </a>
+                                                </div>
 
-                                <p className="text-base font-semibold text-gray-700 mb-2 whitespace-nowrap">
-                                    Drag & Drop your images here
-                                </p>
-
-                                <p className="text-sm text-gray-500">
-                                    Jpg / Png / Webp images allowed
-                                </p>
-                            </div>
-
-                            <div tabIndex={0} className="absolute bottom-6 right-6 flex items-center gap-2 px-3 py-1.5 bg-blue-600 border border-blue-500 rounded-full transition-all duration-300 group/batch cursor-pointer outline-none">
-                                <div className="flex items-center justify-center w-5 h-5 bg-white/20 rounded-full">
-                                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                                    </svg>
+                                                <div className="flex-1 text-center sm:text-left">
+                                                    <p className="text-sm font-semibold text-gray-900 mb-1">{image.name}</p>
+                                                    <p className="text-xs text-slate-500 mb-4 tracking-wide">Enhanced with Creative AI mode</p>
+                                                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold bg-indigo-100 text-indigo-700 uppercase tracking-wide">
+                                                        High Definition
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
-                                <span className="text-xs font-semibold text-white">Batch Process</span>
+                            ) : (
+                                <>
+                                    <div className="flex h-full min-h-[inherit] flex-col items-center justify-center text-center">
+                                        <input type="file" id="file-upload" className="hidden" accept="image/jpeg,image/png,image/webp" multiple onChange={handleFileChange}/>
+                                        
+                                        <label htmlFor="file-upload" className="mb-5 rounded-lg bg-blue-600 px-8 py-3.5 text-base font-semibold text-white shadow-sm flex items-center gap-2 cursor-pointer hover:bg-blue-700 transition-colors">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                            <span>Choose Images</span>
+                                        </label>
 
-                                <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-[10px] rounded whitespace-nowrap pointer-events-none opacity-0 transition-opacity group-hover/batch:opacity-100 group-focus-within/batch:opacity-100 group-active/batch:opacity-100">
-                                    Upscale multiple images at once
-                                </div>
-                            </div>
+                                        <p className="text-base font-semibold text-gray-700 mb-2 whitespace-nowrap">
+                                            Drag & Drop your images here
+                                        </p>
+
+                                        <p className="text-sm text-gray-500">
+                                            Jpg / Png / Webp images allowed
+                                        </p>
+                                    </div>
+
+                                    <div tabIndex={0} className="absolute bottom-6 right-6 flex items-center gap-2 px-3 py-1.5 bg-blue-600 border border-blue-500 rounded-full transition-all duration-300 group/batch cursor-pointer outline-none">
+                                        <div className="flex items-center justify-center w-5 h-5 bg-white/20 rounded-full">
+                                            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                            </svg>
+                                        </div>
+                                        <span className="text-xs font-semibold text-white">Batch Process</span>
+
+                                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-[10px] rounded whitespace-nowrap pointer-events-none opacity-0 transition-opacity group-hover/batch:opacity-100 group-focus-within/batch:opacity-100 group-active/batch:opacity-100">
+                                            Upscale multiple images at once
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                         </div>
+
+                        {isProcessing && (
+                            <div className="mt-6 bg-white border border-gray-200 rounded-xl p-8 border-t-4 border-t-indigo-600 shadow-xl animate-scaleIn">
+                                <div className="flex flex-col items-center justify-center gap-4 text-center">
+                                    <div className="relative w-20 h-20">
+                                        <div className="absolute inset-0 border-4 border-indigo-100 rounded-full"></div>
+                                        <div className="absolute inset-0 border-4 border-indigo-600 rounded-full border-t-transparent animate-spin"></div>
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <svg className="w-10 h-10 text-indigo-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="space-y-2">
+                                        <h3 className="text-xl font-bold text-gray-800">Reimagining Pixels</h3>
+                                        <p className="text-sm text-gray-500 max-w-xs mx-auto italic">
+                                            Adding creative AI details to your image while maintaining resemblance.
+                                        </p>
+                                    </div>
+
+                                    <div className="w-full max-w-xs mt-2">
+                                        <div className="h-2 bg-indigo-50 rounded-full overflow-hidden">
+                                            <div className="h-full bg-gradient-to-r from-indigo-500 to-purple-600 animate-progress"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
 
                         {isUploading && (
                             <div className="mt-6 bg-white border border-gray-200 rounded-xl p-5 sm:p-5">
@@ -236,7 +331,7 @@ function Index() {
                             </div>
                         )}
 
-                        {uploadedImages.length > 0 && !isUploading && (
+                        {uploadedImages.length > 0 && !isUploading && !isProcessing && processedImages.length === 0 && (
                             <div className="mt-6 bg-white border border-gray-200 rounded-xl p-3 sm:p-4 animate-fadeIn">
                                 {uploadedImages.map((image, index) => (
                                     <div key={image.id} className={`flex items-center gap-3 sm:gap-4 ${index !== uploadedImages.length - 1 ? 'mb-3 sm:mb-4 pb-3 sm:pb-4 border-b border-gray-200' : ''}`}>
@@ -781,4 +876,4 @@ function Index() {
     );
 }
 
-export default Index; 
+export default ReimagineUpscaler;

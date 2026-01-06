@@ -7,7 +7,7 @@
   * {
     font-family: "Inter", sans-serif;
   }
-  
+
   .font-nunito {
     font-family: "Nunito", sans-serif;
   }
@@ -183,7 +183,9 @@
 
   :root {
     --testimonial-visible-height: 630px;
-    --testimonial-scroll-distance: calc(-100% + var(--testimonial-visible-height));
+    --testimonial-scroll-distance: calc(
+      -100% + var(--testimonial-visible-height)
+    );
   }
 
   @keyframes leftBottomToTop {
@@ -224,5 +226,46 @@
   .testimonial-scroll-container:hover .testimonial-scroll-up,
   .testimonial-scroll-container:hover .testimonial-scroll-down {
     animation-play-state: paused;
+  }
+
+  /* Custom Scrollbar for Documentation Sidebar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .dark .custom-scrollbar::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #4b5563;
+  }
+
+  .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+  }
+
+  /* Firefox */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+  }
+
+  .dark .custom-scrollbar {
+    scrollbar-color: #4b5563 #1f2937;
   }
 }

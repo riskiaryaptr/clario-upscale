@@ -4,7 +4,6 @@ import Pricing from "@/frontend/pages/Pricing";
 import ReimagineUpscaler from "@/frontend/pages/Reimagine";
 import Login from "@/frontend/auth/Login";
 import ForgotPassword from "@/frontend/auth/ForgotPassword";
-import Documentation from "@/frontend/developer/Documentation";
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
         <Route path="/Reimagine" element={<ReimagineUpscaler />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
-        <Route path="/Documentation" element={<Documentation />} />
       </Routes>
     </Router>
   );

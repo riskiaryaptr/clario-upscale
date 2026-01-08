@@ -5,9 +5,6 @@ function Header() {
     const location = useLocation();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const [developersOpen, setDevelopersOpen] = useState(false);
-    const [mobileDevelopersOpen, setMobileDevelopersOpen] = useState(false);
-    const [mobileAiToolsOpen, setMobileAiToolsOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -66,71 +63,16 @@ function Header() {
                     </div>
 
                     <div className="hidden xl:flex xl:gap-x-8 text-gray-700 font-medium leading-normal tracking-wide">
-                        <Link to="/" className={`text-sm/6 transition-colors ${isActive('/') || isActive('/index') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Image Upscaler</Link>
-                        <div className="relative" onMouseEnter={() => setDevelopersOpen(true)} onMouseLeave={() => setDevelopersOpen(false)}>
-                            <button className="text-sm/6 hover:text-blue-600 transition-colors flex items-center gap-1">
-                                <span>Developers</span>
-                                <svg className={`w-4 h-4 transition-transform duration-200 ${developersOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            
-                            {developersOpen && (
-                                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-[320px]">
-                                    <div className="bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden animate-fadeIn">
-                                        <div>
-                                            <Link to="/Documentation" className="flex items-start gap-5 px-4 py-3 hover:bg-gray-50 transition-colors hover:text-blue-600">
-                                                <div className="flex-shrink-0 mt-0.5">
-                                                    <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                                    </svg>
-                                                </div>
-                                                <div className="flex-1 min-w-0">
-                                                    <div className="text-sm font-semibold text-gray-700 mb-1">API Documentation</div>
-                                                    <div className="text-xs/6 font-medium tracking-wide text-gray-500 mt-0.5">Complete API reference</div>
-                                                </div>
-                                            </Link>
-
-                                            <Link to="/" className="flex items-start gap-5 px-4 py-3 hover:bg-gray-50 transition-colors">
-                                                <div className="flex-shrink-0 mt-0.5">
-                                                    <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                                    </svg>
-                                                </div>
-                                                <div className="flex-1 min-w-0">
-                                                    <div className="text-sm font-semibold text-gray-700 mb-1">APIs</div>
-                                                    <div className="text-xs/6 font-medium tracking-wide text-gray-500 mt-0.5">Tools for integration</div>
-                                                </div>
-                                            </Link>
-
-                                            <Link to="/" className="flex items-start gap-5 px-4 py-3 hover:bg-gray-50 transition-colors">
-                                                <div className="flex-shrink-0 mt-0.5">
-                                                    <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                                    </svg>
-                                                </div>
-                                                <div className="flex-1 min-w-0">
-                                                    <div className="text-sm font-semibold text-gray-700 mb-1">Integrations</div>
-                                                    <div className="text-xs/6 font-medium tracking-wide text-gray-500 mt-0.5">Connect with your tools</div>
-                                                </div>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
+                        <Link to="/" className={`text-sm/6 transition-colors ${isActive('/') || isActive('/index') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Image Upscaler</Link>                        
                         <Link to="/Reimagine" className={`text-sm/6 transition-colors ${isActive('/Reimagine') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Reimagine Upscaler</Link>
+                        <Link to="/" className={`text-sm/6 transition-colors ${isActive('/resize') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Resize Image</Link>
                         <Link to="/" className={`text-sm/6 transition-colors ${isActive('/crop') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Crop Image</Link>
                         <Link to="/Pricing" className={`text-sm/6 transition-colors ${isActive('/Pricing') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Pricing</Link>
-                        <Link to="/" className={`text-sm/6 transition-colors ${isActive('/blog') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Blog</Link>
+                        <Link to="/" className={`text-sm/6 transition-colors ${isActive('/blur') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Blur Face</Link>
                     </div>
 
                     <div className="hidden xl:flex xl:flex-1 xl:justify-end xl:gap-x-4 xl:items-center">
-                        <Link 
-                            to="/Login"
-                            className="text-sm/6 font-semibold text-gray-600 leading-normal tracking-wide hover:text-blue-600 transition-colors"
-                        >
+                        <Link to="/Login" className="text-sm/6 font-semibold text-gray-600 leading-normal tracking-wide hover:text-blue-600 transition-colors">
                             Sign In
                         </Link>
                         
@@ -174,59 +116,12 @@ function Header() {
                         <div className="px-6 mt-6 flow-root">
                             <div className="-my-6">
                                 <div className="space-y-4 py-6 font-medium text-gray-700 text-sm/6">
-                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/') || isActive('/index') ? 'text-blue-600' : ''}`}>Image Upscaler</Link>                                    
-                                    <div className="border-b border-dotted border-gray-300">
-                                        <button onClick={() => { setMobileDevelopersOpen(!mobileDevelopersOpen); setMobileAiToolsOpen(false);}} className={`-mx-3 w-full flex items-center justify-between px-3 py-2.5 text-left ${isActive('/Documentation') ? 'text-blue-600' : ''}`}>
-                                            <span>Developers</span>
-                                            <svg className={`w-4 h-4 transition-transform duration-200 ${mobileDevelopersOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </button>
-
-                                        {mobileDevelopersOpen && (
-                                            <div className="pb-3 pl-6 space-y-2 animate-fadeIn">
-                                                <Link to="/Documentation" className={`block py-4 text-sm hover:text-blue-600 ${isActive('/Documentation') ? 'text-blue-600' : 'text-gray-600'}`}>
-                                                    <div className="flex gap-5 items-start">
-                                                        <svg className="w-4 h-4 text-gray-700 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                                        </svg>
-                                                        <div className="flex-1">
-                                                            <div className="font-semibold mb-1">API Documentation</div>
-                                                            <div className="text-xs text-gray-500 mt-0.5">Complete API reference</div>
-                                                        </div>
-                                                    </div>
-                                                </Link>
-
-                                                <Link to="/" className="block py-4 text-sm text-gray-600 hover:text-blue-600">
-                                                    <div className="flex gap-5 items-start">
-                                                        <svg className="w-4 h-4 text-gray-700 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                                        </svg>
-                                                        <div className="flex-1">
-                                                            <div className="font-semibold mb-1">APIs</div>
-                                                            <div className="text-xs text-gray-500 mt-0.5">Tools for integration</div>
-                                                        </div>
-                                                    </div>
-                                                </Link>
-
-                                                <Link to="/" className="block py-4 text-sm text-gray-600 hover:text-blue-600">
-                                                    <div className="flex gap-5 items-start">
-                                                        <svg className="w-4 h-4 text-gray-700 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                                        </svg>
-                                                        <div className="flex-1">
-                                                            <div className="font-semibold mb-1">Integrations</div>
-                                                            <div className="text-xs text-gray-500 mt-0.5">Connect with your tools</div>
-                                                        </div>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        )}
-                                    </div>
+                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/') || isActive('/index') ? 'text-blue-600' : ''}`}>Image Upscaler</Link>
+                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/resize') ? 'text-blue-600' : ''}`}>Resize Image</Link>
                                     <Link to="/Reimagine" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/Reimagine') ? 'text-blue-600' : ''}`}>Reimagine Upscaler</Link>
                                     <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/crop') ? 'text-blue-600' : ''}`}>Crop Image</Link>
                                     <Link to="/Pricing" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/Pricing') ? 'text-blue-600' : ''}`}>Pricing</Link>
-                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/blog') ? 'text-blue-600' : ''}`}>Blog</Link>
+                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/convert') ? 'text-blue-600' : ''}`}>Convert to JPG</Link>
                                 </div>
 
                                 <div className="py-2 space-y-1">

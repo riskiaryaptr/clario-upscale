@@ -104,7 +104,6 @@ function Index() {
         
         setIsProcessing(true);
         
-        // Simulate processing time
         await new Promise(resolve => setTimeout(resolve, 3000));
         
         const results = uploadedImages.map(img => ({

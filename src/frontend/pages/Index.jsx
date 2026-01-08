@@ -51,7 +51,7 @@ function Index() {
         setIsUploading(true);
         
         await new Promise(resolve => setTimeout(resolve, 4000));
-        
+                
         const newImages = files.map(file => ({
             id: Math.random().toString(36).substring(2, 11),
             file: file,

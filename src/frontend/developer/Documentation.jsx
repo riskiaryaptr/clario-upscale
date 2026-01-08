@@ -336,12 +336,7 @@ function Documentation() {
 
     return (
         <div className={`min-h-screen font-sans transition-colors duration-200 ${isDarkMode ? 'dark bg-gray-900 text-gray-100' : 'bg-white text-gray-900'}`}>
-            <DocHeader 
-                isDarkMode={isDarkMode} 
-                toggleDarkMode={toggleDarkMode}
-                isMobileMenuOpen={isMobileMenuOpen}
-                setIsMobileMenuOpen={setIsMobileMenuOpen}
-            />
+            <DocHeader isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen}/>
 
             <main className="w-full px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
                 <div className="lg:grid lg:grid-cols-12 lg:gap-8">
@@ -360,8 +355,7 @@ function Documentation() {
 
                                 <div className="space-y-1">
                                     {sections.map((section) => (
-                                        <button
-                                            key={section.id}
+                                        <button key={section.id}
                                             onClick={() => {
                                                 scrollToSection(section.id);
                                                 setIsMobileMenuOpen(false);
@@ -383,8 +377,7 @@ function Documentation() {
                     <aside className="hidden lg:block lg:col-span-2">
                         <nav className="custom-scrollbar sticky top-24 space-y-1 max-h-[calc(100vh-8rem)] overflow-y-auto pr-2">
                             {sections.map((section) => (
-                                <button
-                                    key={section.id}
+                                <button key={section.id}
                                     onClick={() => scrollToSection(section.id)}
                                     className={`w-full text-left px-4 py-2.5 text-[14px] font-medium leading-normal font-nunito rounded-lg transition-all duration-200 ${
                                         activeSection === section.id
@@ -869,22 +862,21 @@ function Documentation() {
                             <h3 className={`text-xs font-semibold mb-4 leading-normal tracking-wide ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>On this page</h3>
                             <nav className="custom-scrollbar space-y-2 max-h-[calc(100vh-8rem)] overflow-y-auto pr-2">
                                 {sections.map((section) => (
-                                    <button 
-                                        key={section.id} 
+                                    <button key={section.id} 
                                         onClick={() => {
                                             const element = document.getElementById(section.id);
                                             if (element) {
                                                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                             }
                                         }}
+                                        
                                         className={`block w-full text-left text-[13px] font-medium leading-normal font-nunito py-1.5 px-3 rounded-lg transition-all duration-200 ${
                                             activeSection === section.id
                                                 ? isDarkMode ? "bg-gray-700 text-gray-100" : "bg-gray-100 text-gray-900"
                                                 : isDarkMode 
                                                     ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-800/30' 
                                                     : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50/50'
-                                        }`}
-                                    >
+                                        }`}>
                                         {section.sidebarTitle}
                                     </button>
                                 ))}

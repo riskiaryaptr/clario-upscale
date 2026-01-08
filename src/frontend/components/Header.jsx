@@ -62,8 +62,7 @@ function Header() {
 
                     <div className="hidden xl:flex xl:gap-x-8 text-gray-700 font-medium leading-normal tracking-wide">
                         <Link to="/" className={`text-sm/6 transition-colors ${isActive('/') || isActive('/index') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Image Upscaler</Link>                        
-                        <Link to="/Reimagine" className={`text-sm/6 transition-colors ${isActive('/Reimagine') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Reimagine Upscaler</Link>
-                        <Link to="/" className={`text-sm/6 transition-colors ${isActive('/resize') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Resize Image</Link>
+                        <Link to="/Reimagine" className={`text-sm/6 transition-colors ${isActive('/Reimagine') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Reimagine Upscaler</Link>                        
                         <Link to="/" className={`text-sm/6 transition-colors ${isActive('/crop') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Crop Image</Link>
                         <Link to="/Pricing" className={`text-sm/6 transition-colors ${isActive('/Pricing') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Pricing</Link>
                         <Link to="/" className={`text-sm/6 transition-colors ${isActive('/blur') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Blur Face</Link>
@@ -116,11 +115,10 @@ function Header() {
                             <div className="-my-6">
                                 <div className="space-y-4 py-6 font-medium text-gray-700 text-sm/6">
                                     <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/') || isActive('/index') ? 'text-blue-600' : ''}`}>Image Upscaler</Link>
-                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/resize') ? 'text-blue-600' : ''}`}>Resize Image</Link>
                                     <Link to="/Reimagine" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/Reimagine') ? 'text-blue-600' : ''}`}>Reimagine Upscaler</Link>
                                     <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/crop') ? 'text-blue-600' : ''}`}>Crop Image</Link>
                                     <Link to="/Pricing" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/Pricing') ? 'text-blue-600' : ''}`}>Pricing</Link>
-                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/convert') ? 'text-blue-600' : ''}`}>Convert to JPG</Link>
+                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/blur') ? 'text-blue-600' : ''}`}>Blur Face</Link>
                                 </div>
 
                                 <div className="py-2 space-y-1">

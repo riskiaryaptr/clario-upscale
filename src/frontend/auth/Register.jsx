@@ -6,22 +6,16 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-function Login() {
+function Register() {
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-    const handleForgotPassword = (e) => {
+    const handleRegister = (e) => {
         e.preventDefault();
         setIsLoading(true);
-        setTimeout(() => {
-            navigate('/ForgotPassword');
-        }, 1200);
-    };
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-        setIsLoading(true);
+        // Simulate registration process
         setTimeout(() => {
             setIsLoading(false);
         }, 2000);
@@ -64,7 +58,7 @@ function Login() {
 
                     <div className="relative z-10 flex flex-col items-center px-8 sm:px-12 md:px-16 lg:px-20">            
                         <div className="flex items-center justify-center mb-5">
-                            <img src={workspaceImage} alt="Workspace Illustration" className="w-full max-w-[650px] object-contain drop-shadow-2xl"/>
+                            <img src={workspaceImage} alt="Workspace Illustration" className="w-full max-w-[800px] object-contain drop-shadow-2xl transition-all duration-500 hover:scale-[1.02]"/>
                         </div>
 
                         <div className="text-center text-white w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md mx-auto">
@@ -79,6 +73,7 @@ function Login() {
                                     delay: 5000,
                                     disableOnInteraction: false,
                                 }} loop={true} className="w-full">
+
 
                                 <SwiperSlide>
                                     <div className="pb-10">
@@ -120,15 +115,15 @@ function Login() {
                     </div>
                 </div>
 
-                <div className="w-full md:w-1/2 flex flex-col justify-center min-h-screen px-5 md:px-8 xl:px-20 py-14 lg:py-0 relative bg-white">
+                <div className="w-full md:w-1/2 flex flex-col justify-center min-h-screen px-5 md:px-8 xl:px-20 py-14 relative bg-white">
                     <div className="max-w-md w-full mx-auto flex items-center justify-center">    
                         <div className="text-center">
                             <h2 className="text-2xl font-bold text-gray-600 mb-1 font-nunito leading-normal tracking-wide">
-                                Sign in to your account
+                                Create your account
                             </h2>
 
                             <p className="text-gray-500 font-nunito text-sm/6 tracking-wide font-medium leading-normal">
-                                Upscale and <span className="text-blue-500">transform your images</span>
+                                Start your journey to <span className="text-blue-500">transform your images</span>
                             </p>
                         </div>
                     </div>
@@ -143,7 +138,6 @@ function Login() {
                                     <path d="M6.96409 13.7098C6.78409 13.1698 6.68182 12.593 6.68182 11.9998C6.68182 11.4066 6.78409 10.8298 6.96409 10.2898V7.95801H3.95727C3.34773 9.17301 3 10.5476 3 11.9998C3 13.4521 3.34773 14.8266 3.95727 16.0416L6.96409 13.7098Z" fill="#FBBC05"></path>
                                     <path d="M11.9998 6.57955C13.3211 6.57955 14.5075 7.03364 15.4402 7.92545L18.0216 5.34409C16.4629 3.89182 14.4257 3 11.9998 3C8.48158 3 5.43794 5.01682 3.95703 7.95818L6.96385 10.29C7.67158 8.16273 9.65567 6.57955 11.9998 6.57955Z" fill="#EA4335"></path>
                                 </g>
-                                
                                 <defs>
                                     <clipPath id="clip0_36737_45212">
                                         <rect width="24" height="24" fill="white"></rect>
@@ -151,7 +145,7 @@ function Login() {
                                 </defs>
                             </svg>
                             <span className="text-sm/6 leading-normal tracking-wide font-semibold text-gray-600 font-nunito">
-                                Sign In with Google
+                                Sign Up with Google
                             </span>
                         </button>
                     </div>
@@ -164,13 +158,23 @@ function Login() {
                         <span className="h-px flex-1 bg-gray-200"></span>
                     </div>
 
-                    <form className="space-y-5 mt-3" onSubmit={handleLogin}>
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-semibold text-gray-600 mb-2.5 tracking-wide leading-normal font-nunito">
-                                Email
-                                <span className="ml-0 text-red-500 font-nunito text-sm/6 tracking-wide leading-tight">*</span>
-                            </label>
-                            <input type="email" id="email" className="w-full border border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 placeholder:font-nunito placeholder:text-sm/6 text-gray-600 font-nunito tracking-wide leading-tight" placeholder="Email" required />
+                    <form className="space-y-5 mt-3" onSubmit={handleRegister}>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label htmlFor="fullName" className="block text-sm font-semibold text-gray-600 mb-2.5 tracking-wide leading-normal font-nunito">
+                                    Full Name
+                                    <span className="ml-0 text-red-500 font-nunito text-sm/6 tracking-wide leading-tight">*</span>
+                                </label>
+                                <input type="text" id="fullName" className="w-full border border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 placeholder:font-nunito placeholder:text-sm/6 text-gray-600 font-nunito tracking-wide leading-tight" placeholder="Full Name" required />
+                            </div>
+
+                            <div>
+                                <label htmlFor="email" className="block text-sm font-semibold text-gray-600 mb-2.5 tracking-wide leading-normal font-nunito">
+                                    Email
+                                    <span className="ml-0 text-red-500 font-nunito text-sm/6 tracking-wide leading-tight">*</span>
+                                </label>
+                                <input type="email" id="email" className="w-full border border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 placeholder:font-nunito placeholder:text-sm/6 text-gray-600 font-nunito tracking-wide leading-tight" placeholder="Email" required />
+                            </div>
                         </div>
 
                         <div>
@@ -197,29 +201,40 @@ function Login() {
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center">
-                                <input type="checkbox" id="remember" className="w-4 h-4 text-blue-500 border-gray-300 rounded cursor-pointer" />
-                                <label htmlFor="remember" className="ml-2 text-sm font-semibold text-gray-600 tracking-wide leading-normal cursor-pointer font-nunito">
-                                    Remember me
-                                </label>
-                            </div>
+                        <div>
+                            <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-600 mb-2.5 tracking-wide leading-normal font-nunito">
+                                Confirm Password
+                                <span className="ml-0 text-red-500 font-nunito text-sm/6 tracking-wide leading-tight">*</span>
+                            </label>
 
-                            <a href="/ForgotPassword" onClick={handleForgotPassword} className="text-sm font-bold text-blue-600 hover:underline tracking-wide leading-normal font-nunito">
-                                Forgot password?
-                            </a>
+                            <div className="relative flex items-center">
+                                <input type={showConfirmPassword ? "text" : "password"} id="confirmPassword"  className="w-full border border-gray-300 rounded-lg px-3 py-3 pr-11 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 placeholder:font-nunito placeholder:text-sm/6 text-gray-600 font-nunito tracking-wide leading-tight" placeholder="********" required />
+                                
+                                <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-1 top-1/2 -translate-y-1/2 text-gray-400 flex items-center justify-center h-9 w-9 p-0 z-20" aria-label="Toggle confirm password visibility">
+                                    {showConfirmPassword ? (
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                        </svg>
+                                    ) : (
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    )}
+                                </button>
+                            </div>
                         </div>
 
                         <div className="w-full mt-6">
                             <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold font-nunito tracking-wide">
-                                Sign In
+                                Sign Up
                             </button>
                         </div>                        
                     </form>
 
                     <div className="mt-6 text-center text-sm font-nunito tracking-wide leading-tight text-gray-600 font-semibold">
-                        <span className="font-nunito">Don't have an account?</span>
-                        <Link to="/Register" className="text-blue-600 font-bold hover:underline ml-1 font-nunito">Sign Up</Link>
+                        <span className="font-nunito">Already have an account?</span>
+                        <Link to="/Login" className="text-blue-600 font-bold hover:underline ml-1 font-nunito">Sign In</Link>
                     </div>
                 </div>
             </div>
@@ -229,7 +244,7 @@ function Login() {
                     <div className="flex flex-col items-center">
                         <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
                         <p className="text-gray-700 font-semibold font-nunito">Loading...</p>
-                        <p className="text-gray-500 text-sm font-nunito">Redirecting to Password Recovery</p>
+                        <p className="text-gray-500 text-sm font-nunito">Creating your account...</p>
                     </div>
                 </div>
             )}
@@ -237,4 +252,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register;

@@ -114,11 +114,7 @@ function ForgotPassword() {
                 </div>
             </div>
 
-            <OtpModal 
-                isOpen={showOtpModal}
-                onClose={() => setShowOtpModal(false)}
-                onVerify={handleVerifyOtp}
-            />
+            <OtpModal isOpen={showOtpModal} onClose={() => setShowOtpModal(false)} onVerify={handleVerifyOtp}/>
 
             {isLoading && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-white/80 backdrop-blur-sm animate-fadeIn">

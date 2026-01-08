@@ -189,9 +189,9 @@ function ReimagineUpscaler() {
                             </p>
                         </div>
 
-                        <div className="border-2 border-dashed border-gray-300 rounded-2xl bg-gray-50 relative p-5 pb-16 min-h-[180px]" onDrop={handleDrop} onDragOver={handleDragOver}>
+                        <div className="border-2 border-dashed border-gray-300 rounded-2xl bg-gray-50 relative p-5 min-h-[300px] flex items-center justify-center" onDrop={handleDrop} onDragOver={handleDragOver}>
                             {processedImages.length > 0 ? (
-                                <div className="space-y-6">
+                                <div className="space-y-6 w-full">
                                     <div className="flex items-center justify-between">
                                         <h3 className="text-lg font-semibold text-gray-800 tracking-tight">AI Reimagined Results</h3>
                                         <button onClick={() => { setProcessedImages([]); setUploadedImages([]); }} className="text-sm font-medium text-blue-600 hover:text-blue-700">
@@ -241,40 +241,24 @@ function ReimagineUpscaler() {
                                     </div>
                                 </div>
                             ) : (
-                                <>
-                                    <div className="flex h-full min-h-[inherit] flex-col items-center justify-center text-center">
-                                        <input type="file" id="file-upload" className="hidden" accept="image/jpeg,image/png,image/webp" multiple onChange={handleFileChange}/>
-                                        
-                                        <label htmlFor="file-upload" className="mb-5 rounded-lg bg-blue-600 px-8 py-3.5 text-base font-semibold text-white shadow-sm flex items-center gap-2 cursor-pointer hover:bg-blue-700 transition-colors">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                            </svg>
-                                            <span>Choose Images</span>
-                                        </label>
+                                <div className="flex flex-col items-center justify-center text-center w-full">
+                                    <input type="file" id="file-upload" className="hidden" accept="image/jpeg,image/png,image/webp" multiple onChange={handleFileChange}/>
+                                    
+                                    <label htmlFor="file-upload" className="mb-5 rounded-lg bg-blue-600 px-8 py-3.5 text-base font-semibold text-white shadow-sm flex items-center gap-2 cursor-pointer hover:bg-blue-700 transition-colors">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        <span>Choose Images</span>
+                                    </label>
 
-                                        <p className="text-base font-semibold text-gray-700 mb-2 whitespace-nowrap">
-                                            Drag & Drop your images here
-                                        </p>
+                                    <p className="text-base font-semibold text-gray-700 mb-2 whitespace-nowrap">
+                                        Drag & Drop your images here
+                                    </p>
 
-                                        <p className="text-sm text-gray-500">
-                                            Jpg / Png / Webp images allowed
-                                        </p>
-                                    </div>
-
-                                    <div tabIndex={0} className="absolute bottom-6 right-6 flex items-center gap-2 px-3 py-1.5 bg-blue-600 border border-blue-500 rounded-full transition-all duration-300 group/batch cursor-pointer outline-none">
-                                        <div className="flex items-center justify-center w-5 h-5 bg-white/20 rounded-full">
-                                            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                                            </svg>
-                                        </div>
-                                        
-                                        <span className="text-xs font-semibold text-white">Batch Process</span>
-
-                                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-[10px] rounded whitespace-nowrap pointer-events-none opacity-0 transition-opacity group-hover/batch:opacity-100 group-focus-within/batch:opacity-100 group-active/batch:opacity-100">
-                                            Upscale multiple images at once
-                                        </div>
-                                    </div>
-                                </>
+                                    <p className="text-sm text-gray-500">
+                                        Jpg / Png / Webp images allowed
+                                    </p>
+                                </div>
                             )}
                         </div>
 
@@ -519,11 +503,11 @@ function ReimagineUpscaler() {
                                 </div>
 
                                 <h3 className="text-sm sm:text-md leading-normal font-semibold text-gray-800 mb-3 min-[500px]:mb-3 px-2 w-full line-clamp-1">
-                                    Upload an Image
+                                    Upload Your Image
                                 </h3>
 
                                 <p className="text-[13px] font-normal text-gray-600 leading-relaxed max-w-[200px] lg:max-w-[240px] w-full mx-auto line-clamp-3">
-                                    Simply drag and drop the image you want to upscale with AI Image Upscaler.
+                                    Simply drag and drop the image you want to reimagine with AI-powered creative upscaling.
                                 </p>
                             </div>
 
@@ -596,11 +580,11 @@ function ReimagineUpscaler() {
                                         </div>
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                                            "This AI upscaler is incredible! I've used it for my e-commerce product photos and the results are stunning. The quality improvement is night and day."
+                                            "The Reimagine AI is mind-blowing! The creativity slider lets me add artistic details to product photos. My e-commerce images look stunning!"
                                         </p>           
 
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-semibold text-gray-800">John Doe</p>                                            
+                                            <p className="text-sm font-semibold text-gray-800">Sophia Martinez</p>                                            
                                         </div>             
                                     </div>
 
@@ -614,11 +598,11 @@ function ReimagineUpscaler() {
                                         </div>
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                                            "Fast, easy to use, and the results are amazing! I use it for all my design projects. The batch processing feature is a game-changer."
+                                            "Generative AI features are incredible! I can reimagine old illustrations with new creative patterns. Perfect for my design portfolio."
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-semibold text-gray-800">Emily Rodriguez</p>                                            
+                                            <p className="text-sm font-semibold text-gray-800">Oliver Zhang</p>                                            
                                         </div>
                                     </div>
 
@@ -632,11 +616,11 @@ function ReimagineUpscaler() {
                                         </div>
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                                            "I've tried many upscalers, but this one stands out. The speed and quality are unmatched. It's now an essential part of my workflow."
+                                            "The resemblance strength control is genius! I can upscale portraits while maintaining their essence or add creative artistic touches."
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-semibold text-gray-800">Lisa Parker</p>                                            
+                                            <p className="text-sm font-semibold text-gray-800">Emma Richardson</p>                                            
                                         </div>
                                     </div>
 
@@ -650,11 +634,11 @@ function ReimagineUpscaler() {
                                         </div>
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                                            "The batch processing saves me so much time! I can upscale hundreds of images in minutes. Absolutely love this tool!"
+                                            "Batch processing with creative AI is a game-changer! I can reimagine hundreds of artwork pieces with consistent artistic style."
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-semibold text-gray-800">Robert Taylor</p>
+                                            <p className="text-sm font-semibold text-gray-800">Lucas Bennett</p>
                                         </div>
                                     </div>
 
@@ -668,11 +652,11 @@ function ReimagineUpscaler() {
                                         </div>
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                                            "Outstanding quality! The AI enhancement is remarkable. My clients are always impressed with the final results."
+                                            "Perfect for transforming vintage photos! The AI adds beautiful creative details while keeping the original character intact."
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-semibold text-gray-800">Amanda White</p>
+                                            <p className="text-sm font-semibold text-gray-800">Isabella Cooper</p>
                                         </div>
                                     </div>
 
@@ -686,11 +670,11 @@ function ReimagineUpscaler() {
                                         </div>
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                                            "Game changer for my business! The quality is incredible and it's so easy to use. I recommend it to all my colleagues."
+                                            "The creativity slider is revolutionary! I can control how much artistic transformation to apply. Perfect for my creative agency work."
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-semibold text-gray-800">Christopher Lee</p>
+                                            <p className="text-sm font-semibold text-gray-800">Nathan Price</p>
                                         </div>
                                     </div>
                                 </div>
@@ -708,11 +692,11 @@ function ReimagineUpscaler() {
                                         </div>
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                                            "As a photographer, I need the best quality for my clients. This tool has saved me countless hours and the upscaling quality is professional-grade."
+                                            "As an artist, Reimagine AI helps me explore creative variations of my work. The generative AI adds unique artistic patterns beautifully."
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-semibold text-gray-800">Michael Chen</p>
+                                            <p className="text-sm font-semibold text-gray-800">Maya Patel</p>
                                         </div>
                                     </div>
 
@@ -726,11 +710,11 @@ function ReimagineUpscaler() {
                                         </div>
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                                            "Perfect for restoring old family photos! The AI does an incredible job of enhancing details without making them look artificial. Highly recommended!"
+                                            "Reimagine AI breathes new life into old graphics! The AI-generated details look natural and enhance the overall artistic quality."
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-semibold text-gray-800">David Kim</p>
+                                            <p className="text-sm font-semibold text-gray-800">Ethan Brooks</p>
                                         </div>
                                     </div>
 
@@ -744,11 +728,11 @@ function ReimagineUpscaler() {
                                         </div>
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                                            "Absolutely fantastic tool! The free tier is generous and the results are professional. I upgraded to premium and couldn't be happier."
+                                            "The creative upscaling is phenomenal! I use it for all my illustration projects. The AI adds textures and patterns perfectly."
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-semibold text-gray-800">James Wilson</p>
+                                            <p className="text-sm font-semibold text-gray-800">Ava Thompson</p>
                                         </div>
                                     </div>
 
@@ -762,11 +746,11 @@ function ReimagineUpscaler() {
                                         </div>
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                                            "Simple, powerful, and effective. This is exactly what I needed for my design workflow. Highly recommend to everyone!"
+                                            "Versatile and powerful! I can create multiple artistic variations from one image. Essential tool for creative exploration."
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-semibold text-gray-800">Jennifer Martinez</p>
+                                            <p className="text-sm font-semibold text-gray-800">Ryan Mitchell</p>
                                         </div>
                                     </div>
 
@@ -780,11 +764,11 @@ function ReimagineUpscaler() {
                                         </div>
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                                            "Best upscaling tool I've ever used! The results are consistently amazing and the interface is so user-friendly."
+                                            "Best creative AI tool I've used! The reimagined results are consistently stunning and the interface makes it so easy to experiment."
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-semibold text-gray-800">Thomas Anderson</p>
+                                            <p className="text-sm font-semibold text-gray-800">Chloe Anderson</p>
                                         </div>
                                     </div>
 
@@ -798,11 +782,11 @@ function ReimagineUpscaler() {
                                         </div>
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                                            "Exceptional service and results! This tool has transformed how I work with images. Couldn't be happier with it!"
+                                            "Exceptional creative freedom! Reimagine AI transforms my images into artistic masterpieces. Couldn't be happier with the results!"
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-semibold text-gray-800">Patricia Brown</p>
+                                            <p className="text-sm font-semibold text-gray-800">Liam Foster</p>
                                         </div>
                                     </div>
                                 </div>

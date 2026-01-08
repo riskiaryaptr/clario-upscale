@@ -5,6 +5,7 @@ function Header() {
     const location = useLocation();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [showSignupModal, setShowSignupModal] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -31,6 +32,38 @@ function Header() {
                     </div>
                 </div>
             </div>
+
+            {showSignupModal && (
+                <>
+                    <div className="fixed inset-0 bg-black/50 z-[60]" onClick={() => setShowSignupModal(false)}></div>
+                    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
+                        <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative animate-scaleIn">
+                            <button onClick={() => setShowSignupModal(false)} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+
+                            <h2 className="text-lg font-semibold text-gray-800 mb-2">Create Your Free Account</h2>
+                            
+                            <p className="text-sm/6 text-gray-600 leading-relaxed mb-6">
+                                Start your journey with Clario AI! Create a free account to access powerful AI tools including image upscaling, background removal, and more. No credit card required.
+                            </p>
+
+                            <div className="flex items-center gap-2 justify-end">
+                                <button onClick={() => setShowSignupModal(false)} className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                                    Close
+                                </button>
+
+                                <button onClick={() => setShowSignupModal(false)} className="px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+                                    Get Started
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )}
+
 
             <header className={`sticky top-0 z-50 border-b transition-all duration-300 ${ isScrolled ? 'bg-white/95 backdrop-blur-lg border-gray-200/50' : 'bg-white border-gray-200'}`}>
                 <nav aria-label="Global" className="mx-auto max-w-7xl flex items-center justify-between p-5 xl:px-8">
@@ -63,9 +96,9 @@ function Header() {
                     <div className="hidden xl:flex xl:gap-x-8 text-gray-700 font-medium leading-normal tracking-wide">
                         <Link to="/" className={`text-sm/6 transition-colors ${isActive('/') || isActive('/index') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Image Upscaler</Link>                        
                         <Link to="/Reimagine" className={`text-sm/6 transition-colors ${isActive('/Reimagine') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Reimagine Upscaler</Link>                        
-                        <Link to="/" className={`text-sm/6 transition-colors ${isActive('/crop') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Crop Image</Link>
+                        <Link to="/background-remover" className={`text-sm/6 transition-colors ${isActive('/background-remover') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Background Remover</Link>
                         <Link to="/Pricing" className={`text-sm/6 transition-colors ${isActive('/Pricing') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Pricing</Link>
-                        <Link to="/" className={`text-sm/6 transition-colors ${isActive('/blur') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Blur Face</Link>
+                        <Link to="/face-blur" className={`text-sm/6 transition-colors ${isActive('/face-blur') ? 'text-blue-600' : 'hover:text-blue-600'}`}>Blur Face</Link>
                     </div>
 
                     <div className="hidden xl:flex xl:flex-1 xl:justify-end xl:gap-x-4 xl:items-center">
@@ -73,9 +106,9 @@ function Header() {
                             Sign In
                         </Link>
                         
-                        <Link to="/" className="rounded-md bg-blue-600 px-3 py-2 text-[13px] font-semibold tracking-wide text-white shadow-sm">
+                        <button onClick={() => setShowSignupModal(true)} className="rounded-md bg-blue-600 px-3 py-2 text-[13px] font-semibold tracking-wide text-white shadow-sm">
                             Start Free Account
-                        </Link>
+                        </button>
                     </div>
                 </nav>
             </header>
@@ -116,9 +149,9 @@ function Header() {
                                 <div className="space-y-4 py-6 font-medium text-gray-700 text-sm/6">
                                     <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/') || isActive('/index') ? 'text-blue-600' : ''}`}>Image Upscaler</Link>
                                     <Link to="/Reimagine" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/Reimagine') ? 'text-blue-600' : ''}`}>Reimagine Upscaler</Link>
-                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/crop') ? 'text-blue-600' : ''}`}>Crop Image</Link>
+                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/background-remover') ? 'text-blue-600' : ''}`}>Background Remover</Link>
                                     <Link to="/Pricing" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/Pricing') ? 'text-blue-600' : ''}`}>Pricing</Link>
-                                    <Link to="/" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/blur') ? 'text-blue-600' : ''}`}>Blur Face</Link>
+                                    <Link to="/face-blur" className={`-mx-3 block rounded-lg px-3 py-2.5 border-b border-dotted border-gray-300 ${isActive('/face-blur') ? 'text-blue-600' : ''}`}>Blur Face</Link>
                                 </div>
 
                                 <div className="py-2 space-y-1">
@@ -126,9 +159,9 @@ function Header() {
                                         Sign In
                                     </Link>
 
-                                    <Link to="/" className="-mx-3 block rounded-md bg-blue-600 px-3 py-2.5 text-[13px] font-semibold tracking-wide text-white shadow-sm">
+                                    <button onClick={() => setShowSignupModal(true)} className="-mx-3 block rounded-md bg-blue-600 px-3 py-2.5 text-[13px] font-semibold tracking-wide text-white shadow-sm">
                                         Start Free Account
-                                    </Link>
+                                    </button>
                                 </div>
                             </div>
                         </div>

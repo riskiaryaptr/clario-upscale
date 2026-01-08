@@ -12,6 +12,7 @@ function Index() {
     const [processedImages, setProcessedImages] = useState([]);
     const [isPlayingVideo, setIsPlayingVideo] = useState(false);
     const [openFaqIndex, setOpenFaqIndex] = useState(null);
+    const [showBatchModal, setShowBatchModal] = useState(false);
 
     const toggleFaq = (index) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -121,6 +122,37 @@ function Index() {
         
             <div className="bg-white min-h-screen relative">
 
+                
+                {showBatchModal && (
+                    <>
+                        <div className="fixed inset-0 bg-black/50 z-[60]" onClick={() => setShowBatchModal(false)}></div>
+                        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
+                            <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative animate-scaleIn">
+                                <button onClick={() => setShowBatchModal(false)} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+
+                                <h2 className="text-lg font-semibold text-gray-800 mb-2">Upgrade for Batch</h2>
+                                
+                                <p className="text-sm/6 text-gray-600 leading-relaxed mb-6">
+                                    Free users can only process one image at a time and produce resulted image up to 4096*4096. Upgrade your account to unlock batch process and produce upscaled image up to 16000*16000! Start from $3.9.
+                                </p>
+
+                                <div className="flex items-center gap-2 justify-end">
+                                    <button onClick={() => setShowBatchModal(false)} className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                                        Close
+                                    </button>
+
+                                    <button onClick={() => setShowBatchModal(false)} className="px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+                                        Confirm
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                )}
                 <Header />
                 
                 <div className="relative isolate px-6 lg:px-8 overflow-x-hidden">
@@ -207,7 +239,7 @@ function Index() {
                                         </p>
                                     </div>
 
-                                    <div tabIndex={0} className="absolute bottom-6 right-6 flex items-center gap-2 px-3 py-1.5 bg-blue-600 border border-blue-500 rounded-full transition-all duration-300 group/batch cursor-pointer outline-none">
+                                    <div onClick={() => setShowBatchModal(true)} tabIndex={0} className="absolute bottom-6 right-6 flex items-center gap-2 px-3 py-1.5 bg-blue-600 border border-blue-500 rounded-full transition-all duration-300 group/batch cursor-pointer outline-none">
                                         <div className="flex items-center justify-center w-5 h-5 bg-white/20 rounded-full">
                                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />

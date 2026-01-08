@@ -1,21 +1,42 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "@/frontend/components/Header";
 import Footer from "@/frontend/components/Footer";
 import profile from "../../assets/images/profile.avif";
 
 function Pricing() {
+    const navigate = useNavigate();
     const [billingCycle, setBillingCycle] = useState("monthly");
-    const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState(null);
     const [openFaqIndex, setOpenFaqIndex] = useState(null);
+    const [toastTimeoutId, setToastTimeoutId] = useState(null);
 
     const toggleFaq = (index) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index);
     };
 
+    const showToast = (message) => {
+        if (toastTimeoutId) {
+            clearTimeout(toastTimeoutId);
+        }
+
+        setToastMessage(message);
+
+        const timeoutId = setTimeout(() => {
+            setToastMessage(null);
+            setToastTimeoutId(null);
+        }, 3000);
+        
+        setToastTimeoutId(timeoutId);
+    };
+
     const copyCoupon = () => {
         navigator.clipboard.writeText("FRIEND50");
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 3000);
+        showToast("Coupon code copied");
+    };
+
+    const showLoginMessage = () => {
+        showToast("Please create and login an account first.");
     };
 
     const faqs = [
@@ -100,7 +121,7 @@ function Pricing() {
                                     ))}
                                 </ul>
                                 
-                                <button className="mt-auto w-full py-2 px-6 rounded-xl border border-gray-200 font-normal tracking-wide text-gray-700 text-sm/6">
+                                <button onClick={() => navigate('/Register')} className="mt-auto w-full py-2 px-6 rounded-xl border border-gray-200 font-normal tracking-wide text-gray-700 text-sm/6 hover:bg-gray-50 transition-colors">
                                     Create Account
                                 </button>
                             </div>
@@ -130,7 +151,7 @@ function Pricing() {
                                     ))}
                                 </ul>
                                 
-                                <button className="mt-auto w-full py-2 px-6 rounded-xl bg-blue-600 text-white font-normal tracking-wide text-sm/6 flex items-center justify-center gap-2">
+                                <button onClick={showLoginMessage} className="mt-auto w-full py-2 px-6 rounded-xl bg-blue-600 text-white font-normal tracking-wide text-sm/6 flex items-center justify-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" />
                                     </svg>
@@ -167,7 +188,7 @@ function Pricing() {
                                     ))}
                                 </ul>
                                 
-                                <button className="mt-auto w-full py-2 px-6 rounded-xl bg-blue-600 text-white font-normal tracking-wide text-sm/6 flex items-center justify-center gap-2">
+                                <button onClick={showLoginMessage} className="mt-auto w-full py-2 px-6 rounded-xl bg-blue-600 text-white font-normal tracking-wide text-sm/6 flex items-center justify-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" />
                                     </svg>
@@ -204,7 +225,7 @@ function Pricing() {
                                         Coupon: FRIEND50
                                     </button>
 
-                                    <button className="mt-auto w-full py-2 px-6 rounded-xl bg-blue-600 text-white font-normal tracking-wide text-sm/6 flex items-center justify-center gap-2">
+                                    <button onClick={showLoginMessage} className="mt-auto w-full py-2 px-6 rounded-xl bg-blue-600 text-white font-normal tracking-wide text-sm/6 flex items-center justify-center gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" />
                                         </svg>
@@ -503,14 +524,14 @@ function Pricing() {
                 <Footer />
             </div>                
 
-            {showToast && (
+            {toastMessage && (
                 <div className="fixed top-10 left-1/2 -translate-x-1/2 z-[100] animate-in fade-in slide-in-from-top-4 duration-300">
                     <div className="bg-white rounded-2xl shadow-xl border border-gray-100 px-6 py-4 flex items-center gap-4">
                         <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
                             <span className="text-white text-[12px] font-serif italic font-bold">i</span>
                         </div>
                         <span className="text-gray-700 text-[15px] font-medium tracking-tight">
-                            Coupon code copied
+                            {toastMessage}
                         </span>
                     </div>
                 </div>

@@ -25,12 +25,10 @@ function Header() {
         <>
             <div className="bg-gray-100">
                 <div className="mx-auto max-w-7xl px-4 py-4">
-                    <p className="text-center text-[13px] text-gray-700 font-normal leading-normal tracking-wide">
-                        New! AI-Powered Image Upscaler - Enhance your images up to 4K resolution with our smart AI technology
-                        <Link to="/" className="ml-2 font-semibold leading-normal tracking-wide text-blue-600 hover:text-blue-700">
-                            Try it now →
-                        </Link>
-                    </p>
+                    <div className="text-center text-[13px] text-gray-700 font-normal leading-normal tracking-wide">
+                        <span>New! AI-Powered Image Upscaler - Enhance your images up to 4K resolution with our smart AI technology</span>
+                        <Link to="/" className="ml-2 font-semibold leading-normal tracking-wide text-blue-600 hover:text-blue-700">Try it now →</Link>
+                    </div>
                 </div>
             </div>
 
@@ -86,6 +84,7 @@ function Header() {
             {mobileMenuOpen && (
                 <div className="xl:hidden">
                     <div className="fixed inset-0 z-[60] bg-black/20" onClick={() => setMobileMenuOpen(false)} />                    
+                    
                     <div className="fixed inset-y-0 right-0 z-[60] w-full overflow-y-auto bg-white sm:ring-1 sm:ring-gray-900/10">
                         <div className="border-b border-gray-200">
                             <div className="flex items-center justify-between px-6 py-4">

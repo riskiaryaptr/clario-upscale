@@ -476,10 +476,12 @@ function Pricing() {
                                             <span className="text-gray-700 font-medium text-base">
                                                 {index + 1}.
                                             </span>
+                                            
                                             <h3 className={`text-md font-medium pr-4 transition-colors duration-200 ${openFaqIndex === index ? 'text-blue-600' : 'text-gray-700'}`}>
                                                 {faq.question}
                                             </h3>
                                         </div>
+
                                         <svg className={`w-4 h-4 text-gray-500 flex-shrink-0 transition-transform duration-300 ${openFaqIndex === index ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                         </svg>

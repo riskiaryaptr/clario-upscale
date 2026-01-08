@@ -109,7 +109,7 @@ function Index() {
         
         const results = uploadedImages.map(img => ({
             ...img,
-            processedPreview: img.preview, // In a real app, this would be the URL from the server
+            processedPreview: img.preview,
             status: 'completed'
         }));
         
@@ -145,6 +145,7 @@ function Index() {
                                             Process More
                                         </button>
                                     </div>
+                                    
                                     <div className="grid grid-cols-1 gap-4">
                                         {processedImages.map((image) => (
                                             <div key={image.id} className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row items-center gap-6">
@@ -998,7 +999,6 @@ function Index() {
                                 </div>
                             </div>
 
-                            {/* Right Column - Scrolling Down & Up (Yoyo Reverse) */}
                             <div className="testimonial-scroll-container h-[630px] md:mt-12 overflow-hidden relative">
                                 <div className="testimonial-scroll-down space-y-6">
                                     <div className="bg-white rounded-2xl p-5 border border-gray-200 transition-all duration-300">

@@ -198,6 +198,7 @@ function ReimagineUpscaler() {
                                             New Reimagine
                                         </button>
                                     </div>
+
                                     <div className="grid grid-cols-1 gap-4">
                                         {processedImages.map((image) => (
                                             <div key={image.id} className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row items-center gap-6">
@@ -223,7 +224,7 @@ function ReimagineUpscaler() {
                                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                                             </svg>
-                                                            Save HD
+                                                            <span>Save HD</span>
                                                         </button>
                                                     </a>
                                                 </div>
@@ -266,6 +267,7 @@ function ReimagineUpscaler() {
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                                             </svg>
                                         </div>
+                                        
                                         <span className="text-xs font-semibold text-white">Batch Process</span>
 
                                         <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-[10px] rounded whitespace-nowrap pointer-events-none opacity-0 transition-opacity group-hover/batch:opacity-100 group-focus-within/batch:opacity-100 group-active/batch:opacity-100">
@@ -595,11 +597,10 @@ function ReimagineUpscaler() {
                                         
                                         <p className="text-sm text-gray-600 leading-relaxed mb-5">
                                             "This AI upscaler is incredible! I've used it for my e-commerce product photos and the results are stunning. The quality improvement is night and day."
-                                        </p>                           
+                                        </p>           
+
                                         <div className="flex items-center gap-3">
-                                            <div>
-                                                <p className="text-sm font-semibold text-gray-800">John Doe</p>
-                                            </div>
+                                            <p className="text-sm font-semibold text-gray-800">John Doe</p>                                            
                                         </div>             
                                     </div>
 
@@ -617,9 +618,7 @@ function ReimagineUpscaler() {
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <div>
-                                                <p className="text-sm font-semibold text-gray-800">Emily Rodriguez</p>
-                                            </div>
+                                            <p className="text-sm font-semibold text-gray-800">Emily Rodriguez</p>                                            
                                         </div>
                                     </div>
 
@@ -637,9 +636,7 @@ function ReimagineUpscaler() {
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <div>
-                                                <p className="text-sm font-semibold text-gray-800">Lisa Parker</p>
-                                            </div>
+                                            <p className="text-sm font-semibold text-gray-800">Lisa Parker</p>                                            
                                         </div>
                                     </div>
 
@@ -657,9 +654,7 @@ function ReimagineUpscaler() {
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <div>
-                                                <p className="text-sm font-semibold text-gray-800">Robert Taylor</p>
-                                            </div>
+                                            <p className="text-sm font-semibold text-gray-800">Robert Taylor</p>
                                         </div>
                                     </div>
 
@@ -677,9 +672,7 @@ function ReimagineUpscaler() {
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <div>
-                                                <p className="text-sm font-semibold text-gray-800">Amanda White</p>
-                                            </div>
+                                            <p className="text-sm font-semibold text-gray-800">Amanda White</p>
                                         </div>
                                     </div>
 
@@ -697,15 +690,12 @@ function ReimagineUpscaler() {
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <div>
-                                                <p className="text-sm font-semibold text-gray-800">Christopher Lee</p>
-                                            </div>
+                                            <p className="text-sm font-semibold text-gray-800">Christopher Lee</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Right Column - Scrolling Down & Up (Yoyo Reverse) */}
                             <div className="testimonial-scroll-container h-[630px] md:mt-12 overflow-hidden relative">
                                 <div className="testimonial-scroll-down space-y-6">
                                     <div className="bg-white rounded-2xl p-5 border border-gray-200 transition-all duration-300">
@@ -722,9 +712,7 @@ function ReimagineUpscaler() {
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <div>
-                                                <p className="text-sm font-semibold text-gray-800">Michael Chen</p>
-                                            </div>
+                                            <p className="text-sm font-semibold text-gray-800">Michael Chen</p>
                                         </div>
                                     </div>
 
@@ -742,9 +730,7 @@ function ReimagineUpscaler() {
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <div>
-                                                <p className="text-sm font-semibold text-gray-800">David Kim</p>
-                                            </div>
+                                            <p className="text-sm font-semibold text-gray-800">David Kim</p>
                                         </div>
                                     </div>
 
@@ -762,9 +748,7 @@ function ReimagineUpscaler() {
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <div>
-                                                <p className="text-sm font-semibold text-gray-800">James Wilson</p>
-                                            </div>
+                                            <p className="text-sm font-semibold text-gray-800">James Wilson</p>
                                         </div>
                                     </div>
 
@@ -782,9 +766,7 @@ function ReimagineUpscaler() {
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <div>
-                                                <p className="text-sm font-semibold text-gray-800">Jennifer Martinez</p>
-                                            </div>
+                                            <p className="text-sm font-semibold text-gray-800">Jennifer Martinez</p>
                                         </div>
                                     </div>
 
@@ -802,9 +784,7 @@ function ReimagineUpscaler() {
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <div>
-                                                <p className="text-sm font-semibold text-gray-800">Thomas Anderson</p>
-                                            </div>
+                                            <p className="text-sm font-semibold text-gray-800">Thomas Anderson</p>
                                         </div>
                                     </div>
 
@@ -822,9 +802,7 @@ function ReimagineUpscaler() {
                                         </p>
                                         
                                         <div className="flex items-center gap-3">
-                                            <div>
-                                                <p className="text-sm font-semibold text-gray-800">Patricia Brown</p>
-                                            </div>
+                                            <p className="text-sm font-semibold text-gray-800">Patricia Brown</p>
                                         </div>
                                     </div>
                                 </div>
@@ -848,6 +826,7 @@ function ReimagineUpscaler() {
                                             <span className="text-gray-700 font-medium text-base">
                                                 {index + 1}.
                                             </span>
+
                                             <h3 className={`text-md font-medium pr-4 transition-colors duration-200 ${openFaqIndex === index ? 'text-blue-600' : 'text-gray-700'}`}>
                                                 {faq.question}
                                             </h3>

@@ -9,18 +9,21 @@ import "swiper/css/pagination";
 function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [loadingText, setLoadingText] = useState("");
     const navigate = useNavigate();
 
-    const handleForgotPassword = (e) => {
+    const handleNavigation = (e, path, text) => {
         e.preventDefault();
+        setLoadingText(text);
         setIsLoading(true);
         setTimeout(() => {
-            navigate('/ForgotPassword');
+            navigate(path);
         }, 1200);
     };
 
     const handleLogin = (e) => {
         e.preventDefault();
+        setLoadingText("Signing in...");
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
@@ -31,8 +34,8 @@ function Login() {
         <section className="font-nunito">
             <div className="min-h-screen flex flex-col md:flex-row">
                 <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-600 flex-col justify-center items-center relative overflow-hidden">
-                    <div className="absolute top-6 left-6 md:top-8 md:left-8 z-20 flex items-center gap-2">
-                        <div className="flex items-center justify-center w-10 h-10 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-md">
+                    <div className="absolute top-6 left-6 md:top-8 md:left-8 z-20 flex items-center gap-2 cursor-pointer group" onClick={(e) => handleNavigation(e, '/', 'Returning to home...')}>
+                        <div className="flex items-center justify-center w-10 h-10 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-300 group-hover:bg-white/20 group-hover:scale-105">
                             <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" fillOpacity="0.9"/>
                                 <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -41,7 +44,7 @@ function Login() {
                         </div>
         
                         <div className="flex flex-col">
-                            <h1 className="text-white font-bold text-xl leading-none tracking-tight font-nunito mb-0.5">Clario</h1>
+                            <h1 className="text-white font-bold text-xl leading-none tracking-tight font-nunito mb-0.5 group-hover:text-blue-50 transition-colors">Clario</h1>
                             <p className="text-white/70 text-[10px] leading-none tracking-wider font-nunito font-medium">Smart AI Tools</p>
                         </div>
                     </div>
@@ -205,7 +208,7 @@ function Login() {
                                 </label>
                             </div>
 
-                            <a href="/ForgotPassword" onClick={handleForgotPassword} className="text-sm font-bold text-blue-600 hover:underline tracking-wide leading-normal font-nunito">
+                            <a href="/ForgotPassword" onClick={(e) => handleNavigation(e, '/ForgotPassword', 'Redirecting to Password Recovery...')} className="text-sm font-bold text-blue-600 hover:underline tracking-wide leading-normal font-nunito">
                                 Forgot password?
                             </a>
                         </div>
@@ -219,7 +222,7 @@ function Login() {
 
                     <div className="mt-6 text-center text-sm font-nunito tracking-wide leading-tight text-gray-600 font-semibold">
                         <span className="font-nunito">Don't have an account?</span>
-                        <Link to="/Register" className="text-blue-600 font-bold hover:underline ml-1 font-nunito">Sign Up</Link>
+                        <Link to="/Register" onClick={(e) => handleNavigation(e, '/Register', 'Preparing your sign up...')} className="text-blue-600 font-bold hover:underline ml-1 font-nunito">Sign Up</Link>
                     </div>
                 </div>
             </div>
@@ -229,7 +232,7 @@ function Login() {
                     <div className="flex flex-col items-center">
                         <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
                         <p className="text-gray-700 font-semibold font-nunito">Loading...</p>
-                        <p className="text-gray-500 text-sm font-nunito">Redirecting to Password Recovery</p>
+                        <p className="text-gray-500 text-sm font-nunito">{loadingText}</p>
                     </div>
                 </div>
             )}

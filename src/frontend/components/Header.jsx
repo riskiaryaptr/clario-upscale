@@ -68,7 +68,7 @@ function Header() {
             <header className={`sticky top-0 z-50 border-b transition-all duration-300 ${ isScrolled ? 'bg-white/95 backdrop-blur-lg border-gray-200/50' : 'bg-white border-gray-200'}`}>
                 <nav aria-label="Global" className="mx-auto max-w-7xl flex items-center justify-between p-5 xl:px-8">
                     <div className="flex xl:flex-1">
-                        <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-2">
+                        <Link to="/index" className="-m-1.5 p-1.5 flex items-center gap-2">
                             <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg shadow-md">
                                 <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" fillOpacity="0.9"/>

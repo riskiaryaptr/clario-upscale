@@ -118,10 +118,8 @@ function Index() {
     };
 
     return (
-        <>
-        
-            <div className="bg-white min-h-screen relative">
-
+        <>               
+			<div className="bg-white min-h-screen relative">
                 
                 {showBatchModal && (
                     <>

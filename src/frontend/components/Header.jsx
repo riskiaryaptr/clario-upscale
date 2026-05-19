@@ -159,7 +159,7 @@ function Header() {
                                         Sign In
                                     </Link>
 
-                                    <button onClick={() => setShowSignupModal(true)} className="-mx-3 block rounded-md bg-blue-600 px-3 py-2.5 text-[13px] font-semibold tracking-wide text-white shadow-sm">
+                                    <button onClick={() => setShowSignupModal(true)} className="w-full block rounded-md bg-blue-600 text-center px-3 py-2.5 text-[13px] font-semibold tracking-wide text-white shadow-sm">
                                         Start Free Account
                                     </button>
                                 </div>

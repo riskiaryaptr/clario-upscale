@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import Index from "@/frontend/pages/Index";
 import Pricing from "@/frontend/pages/Pricing";
 import FaceBlur from "@/frontend/pages/Face-Blur";
@@ -8,11 +9,22 @@ import Login from "@/frontend/auth/Login";
 import Register from "@/frontend/auth/Register";
 import ForgotPassword from "@/frontend/auth/ForgotPassword";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Index />} />
+          <Route path="/" element={<Index />} />
         <Route path="/index" element={<Index />} />
         <Route path="/Pricing" element={<Pricing />} />
         <Route path="/Reimagine" element={<ReimagineUpscaler />} />
